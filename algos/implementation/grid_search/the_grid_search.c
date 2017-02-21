@@ -8,18 +8,36 @@ problem https://www.hackerrank.com/challenges/the-grid-search
 code by Alexander Hinds, DarkPurple141
 */
 
+int search(char ** G, int R, int C,
+  char ** g, int r, int c) {
+    int i,j;
+    for (i=R;i<R+r;i++) {
+      for (j=C;j<C+c;j++) {
+        if (!(G[i][j] == g[i-R][j-C]) ) {
+          return 0;
+        }
+      }
+    }
+    return 1;
+}
+
 // check for subgrid in grid
 int gridSearch(char ** G, int R, int C,
   char ** g, int r, int c) {
-  int returnVal, i, j;
+  int i, j;
 
-  for (i=0; i<R; i++) {
+  for (i=0; i<R-r+1; i++) {
     j = 0;
-    returnVal = 0;
-    // ths is a comment
+    for (j=0;j<C-c+1; j++) {
+      if (G[i][j] == g[0][0]) {
+        if (search(G,i,j,g,r,c)) {
+          return 1;
+        }
+      }
+    }
   }
 
-  return returnVal;
+  return 0;
 }
 
 void readGrid(char ** G, int r, int c) {
@@ -59,7 +77,6 @@ int main(void) {
     scanf("%d %d",&R,&C);
     char ** G = malloc(R*sizeof(char*));
     readGrid(G,R,C);
-    printGrid(G,R,C);
 
     scanf("%d %d",&r,&c);
     char ** g = malloc(r*sizeof(char*));

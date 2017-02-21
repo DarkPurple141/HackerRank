@@ -16,7 +16,7 @@ int gridSearch(char ** G, int R, int C,
   for (i=0; i<R; i++) {
     j = 0;
     returnVal = 0;
-
+    // ths is a comment
   }
 
   return returnVal;

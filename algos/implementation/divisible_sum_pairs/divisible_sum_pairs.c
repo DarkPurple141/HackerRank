@@ -1,9 +1,9 @@
-
 #include <stdio.h>
 #include <stdlib.h>
 /*
 input n, k // n is the size of the array being read
-print the numer of i,j pairs where i < j and aI + aJ is divisible by k
+print the numer of a[i],a[j] pairs where i < j and
+a[i] + a[j] is divisible by k
 */
 
 int cmpfunc (const void * a, const void * b) {
@@ -52,6 +52,7 @@ int main(void) {
        scanf("%d",&a[i]);
     }
 
+    // sorting values allows us to skip duplicates
     qsort(a, n, sizeof(int), cmpfunc);
     printf("%d\n",findPairs(a,n,k));
 

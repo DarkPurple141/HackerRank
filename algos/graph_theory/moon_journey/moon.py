@@ -26,7 +26,10 @@ def conns(index,g):
     return small_graph
 
 def add_pairs(index,size,connected,g,seen):
-    local = conns(index,g)
+    if not g[index]:
+        return size-1
+    else:
+        local = conns(index,g)
     pairs = 0
     for item in local:
         seen.add(item)
